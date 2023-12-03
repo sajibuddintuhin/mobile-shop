@@ -5,7 +5,7 @@ const Banner = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allProduct")
+    fetch("http://localhost:5000/Category")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -13,7 +13,7 @@ const Banner = () => {
     <div className="">
       <div className="">
         <img
-          className="max-h-[80vh] w-full"
+          className="max-h-[80vh] w-full rounded-b-xl"
           src="https://i.ibb.co/cDt9yWM/new-smartphone-balancing-with-cloth.jpg"
           alt=""
         />

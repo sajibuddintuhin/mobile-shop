@@ -1,17 +1,28 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { userLogin } = useContext(AuthProvider);
+  const { userLogin, signInGoogle } = useContext(AuthProvider);
   const Navigate = useNavigate();
+
+  const hendlegoogle = () => {
+    signInGoogle()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
     userLogin(email, password)
       .then((userCredential) => {
         // Signed up
@@ -20,7 +31,13 @@ const Login = () => {
         // ...
       })
       .catch((error) => {
-        console.log(error);
+        const errorMessage = error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorMessage}`,
+        });
+
         // ..
       });
   };
@@ -66,7 +83,11 @@ const Login = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            onClick={hendlegoogle}
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

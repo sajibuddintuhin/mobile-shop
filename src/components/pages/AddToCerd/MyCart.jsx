@@ -1,8 +1,44 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const cardData = useLoaderData();
+  const cardDatas = useLoaderData();
+  const [cardData, setCardData] = useState(cardDatas);
   console.log(cardData);
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/addCart/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              const myProduct = cardData.filter((card) => card._id !== id);
+              setCardData(myProduct);
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="max-w-screen-2xl ">
       <div className="flex flex-col mx-10 max-w-3xl md:mx-auto p-6 space-y-4 sm:p-10 dark:bg-gray-900 dark:text-gray-100">
@@ -37,6 +73,7 @@ const MyCart = () => {
                   </div>
                   <div className="flex text-sm divide-x">
                     <button
+                      onClick={() => handleDelete(card._id)}
                       type="button"
                       className="flex items-center px-2 py-1 pl-0 space-x-1"
                     >

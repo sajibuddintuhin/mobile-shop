@@ -8,11 +8,14 @@ import DetailsProduct from "../pages/Product/BrandDetails/DetailsProduct";
 import MyCart from "../pages/AddToCerd/MyCart";
 import Login from "../pages/login_register/Login";
 import SignUp from "../pages/login_register/SignUp";
+import PrivateRoutes from "./PrivateRoutes";
+import Error from "../pages/error/Error";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -20,7 +23,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addProduct",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <PrivateRoutes>
+            <AddProduct></AddProduct>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/product/:brand",
@@ -30,19 +37,31 @@ const routes = createBrowserRouter([
       },
       {
         path: "/update/:id",
-        element: <UpdateProduct></UpdateProduct>,
+        element: (
+          <PrivateRoutes>
+            <UpdateProduct></UpdateProduct>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/update/${params?.id}`),
       },
       {
         path: "/details/:id",
-        element: <DetailsProduct></DetailsProduct>,
+        element: (
+          <PrivateRoutes>
+            <DetailsProduct></DetailsProduct>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/update/${params?.id}`),
       },
       {
         path: `/addCart/:email`,
-        element: <MyCart></MyCart>,
+        element: (
+          <PrivateRoutes>
+            <MyCart></MyCart>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/addCart/${params?.email}`),
       },

@@ -1,24 +1,51 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { userRegistration } = useContext(AuthProvider);
+  const [text, setText] = useState("");
+  const Navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     // const name = form.email.value
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    if (!password.match(/(?=.{6,})/)) {
+      return setText("minimum password 6 characters ");
+    }
+    if (!password.match(/(?=.*[A-Z])/)) {
+      return setText("minimum one capital letter");
+    }
+    if (!password.match(/(?=.*[@#$%^&+=])/)) {
+      return setText("minimum one special character");
+    }
+
     userRegistration(email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
         // Signed up
-        console.log(userCredential);
+        setText("");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Registration success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        Navigate("/");
         // ...
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+        });
         // ..
       });
   };
@@ -62,6 +89,7 @@ const SignUp = () => {
               </a>
             </div>
           </div>
+          <span className="text-white">{text}</span>
           <button className="block w-full p-3 text-center rounded-lg dark:text-white dark:bg-[#212222]">
             Sign in
           </button>

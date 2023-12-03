@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddProduct = () => {
   const handleForm = (e) => {
     e.preventDefault();
@@ -19,7 +21,18 @@ const AddProduct = () => {
       body: JSON.stringify(product),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your New Product Add successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        form.reset();
+      });
   };
   return (
     <div className="max-w-screen-2xl text-black mx-auto bg-[#F4F3F0]">

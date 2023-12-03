@@ -28,7 +28,7 @@ const NabBar = () => {
       });
   };
   return (
-    <div className="max-w-screen-2xl mx-auto pt-5 text-black ">
+    <div className="max-w-screen-2xl mx-auto  text-black ">
       <div className="navbar shadow ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -55,7 +55,12 @@ const NabBar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl font-bold">daisyUI</a>
+          <img
+            className="w-12"
+            src="https://i.ibb.co/v12RKkC/mobil-shop-removebg-preview.png"
+            alt=""
+          />
+          <a className="btn btn-ghost text-2xl font-bold">Mobile Shop</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex">{links}</ul>

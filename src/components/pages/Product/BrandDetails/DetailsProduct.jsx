@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const DetailsProduct = () => {
   const data = useLoaderData();
   const { user } = useContext(AuthProvider);
+  const Navigate = useNavigate();
 
   // eslint-disable-next-line no-unused-vars
   const [product, setProduct] = useState(data);
@@ -22,7 +24,17 @@ const DetailsProduct = () => {
       body: JSON.stringify({ product, email }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            title: "successfully add to cart",
+            icon: "success",
+            timer: 2500,
+          });
+          Navigate(`/addCart/${user?.email}`);
+        }
+        console.log(data);
+      });
   };
   return (
     <div>

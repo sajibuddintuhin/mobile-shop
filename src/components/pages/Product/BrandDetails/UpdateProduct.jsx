@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
   const updateProduct = useLoaderData();
@@ -25,7 +26,18 @@ const UpdateProduct = () => {
       body: JSON.stringify(product),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-start",
+            icon: "success",
+            title: "Your product has been successfully updated",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        console.log(data);
+      });
   };
   return (
     <div className="max-w-screen-2xl text-black mx-auto bg-[#F4F3F0]">
@@ -106,7 +118,7 @@ const UpdateProduct = () => {
               />
             </div>
             <button className="btn col-span-2 max-w-lg mx-auto mt-5">
-              Add Product
+              Update Product
             </button>
           </div>
         </div>
