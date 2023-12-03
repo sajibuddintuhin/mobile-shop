@@ -6,6 +6,8 @@ import Brand from "../pages/Product/BrandDetails/Brand";
 import UpdateProduct from "../pages/Product/BrandDetails/UpdateProduct";
 import DetailsProduct from "../pages/Product/BrandDetails/DetailsProduct";
 import MyCart from "../pages/AddToCerd/MyCart";
+import Login from "../pages/login_register/Login";
+import SignUp from "../pages/login_register/SignUp";
 
 const routes = createBrowserRouter([
   {
@@ -39,9 +41,18 @@ const routes = createBrowserRouter([
           fetch(`http://localhost:5000/update/${params?.id}`),
       },
       {
-        path: "/addCart/suktuhin@gmail.com",
+        path: `/addCart/:email`,
         element: <MyCart></MyCart>,
-        loader: () => fetch(`http://localhost:5000/addCart/suktuhin@gmail.com`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/addCart/${params?.email}`),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
     ],
   },

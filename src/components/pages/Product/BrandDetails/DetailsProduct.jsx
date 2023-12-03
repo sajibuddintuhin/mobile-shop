@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { AuthProvider } from "../../../context/AuthContext";
 
 const DetailsProduct = () => {
   const data = useLoaderData();
+  const { user } = useContext(AuthProvider);
+
+  // eslint-disable-next-line no-unused-vars
   const [product, setProduct] = useState(data);
   const { image, name, description, _id } = product;
-  const email = "suktuhin@gmail.com";
-  // console.log(data);
+  const email = user?.email;
 
   const addToCard = (id) => {
     console.log(id);
