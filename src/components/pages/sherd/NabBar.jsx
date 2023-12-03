@@ -10,7 +10,7 @@ const NabBar = () => {
         <NavLink to="/addProduct">Add Product</NavLink>
       </li>
       <li className="text-lg font-medium">
-        <NavLink to="/cart">My Cart</NavLink>
+        <NavLink to="/addCart/suktuhin@gmail.com">My Cart</NavLink>
       </li>
     </>
   );

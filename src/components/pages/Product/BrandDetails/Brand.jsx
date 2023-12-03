@@ -11,7 +11,7 @@ const Brand = () => {
   console.log(brandDetails);
   return (
     <div>
-      <div className="max-w-screen-2xl mx-auto ">
+      <div className="max-w-screen-xl mx-auto ">
         <Carousel className="" showArrows={true}>
           {brands.map((brand) => (
             <div key={brand._id}>
@@ -21,7 +21,7 @@ const Brand = () => {
           ))}
         </Carousel>
       </div>
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-screen-2xl mx-auto mt-16">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl mx-auto mt-16">
         {brands.map((brand) => (
           <BrandCrad key={brand._id} brands={brand}></BrandCrad>
         ))}
