@@ -66,6 +66,7 @@ const NabBar = () => {
           <ul className="menu menu-horizontal px-1 flex">{links}</ul>
         </div>
         <div className="navbar-end">
+          <p className="mr-4 font-semibold"> {user?.displayName}</p>
           {user ? (
             <div className="dropdown dropdown-end">
               <div
@@ -85,10 +86,7 @@ const NabBar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
+                  <a className="justify-between">{user?.displayName}</a>
                 </li>
                 <li>
                   <a>Settings</a>

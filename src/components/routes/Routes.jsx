@@ -33,7 +33,9 @@ const routes = createBrowserRouter([
         path: "/product/:brand",
         element: <Brand></Brand>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params?.brand}`),
+          fetch(
+            `https://brabd-assignment-10-server.vercel.app/product/${params?.brand}`
+          ),
       },
       {
         path: "/update/:id",
@@ -43,7 +45,9 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/update/${params?.id}`),
+          fetch(
+            `https://brabd-assignment-10-server.vercel.app/update/${params?.id}`
+          ),
       },
       {
         path: "/details/:id",
@@ -53,7 +57,9 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/update/${params?.id}`),
+          fetch(
+            `https://brabd-assignment-10-server.vercel.app/update/${params?.id}`
+          ),
       },
       {
         path: `/addCart/:email`,
@@ -63,7 +69,9 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addCart/${params?.email}`),
+          fetch(
+            `https://brabd-assignment-10-server.vercel.app/addCart/${params?.email}`
+          ),
       },
       {
         path: "/login",

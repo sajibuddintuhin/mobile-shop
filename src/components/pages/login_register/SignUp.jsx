@@ -4,13 +4,13 @@ import { AuthProvider } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { userRegistration } = useContext(AuthProvider);
+  const { userRegistration, userUpDate } = useContext(AuthProvider);
   const [text, setText] = useState("");
   const Navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    // const name = form.email.value
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -29,6 +29,11 @@ const SignUp = () => {
       .then((userCredential) => {
         // Signed up
         setText("");
+        userUpDate(name)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
         Swal.fire({
           position: "top-end",
           icon: "success",

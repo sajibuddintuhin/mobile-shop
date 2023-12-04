@@ -6,7 +6,7 @@ const Content = () => {
           <div className="flex flex-col justify-center">
             <div className="max-w-xl mb-6">
               <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                Unlocking the Power of Connectivity:
+                Unlocking the Power of
                 <br className="hidden md:block" />
                 Exploring the Dynamic World of Mobile Services for
                 <span className="relative px-1">
@@ -32,7 +32,7 @@ const Content = () => {
               <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
                 <div className="h-full p-5 border border-l-0 rounded-r">
                   <h6 className="mb-2 font-semibold leading-5">
-                    I'll be sure to note that in my log
+                    I ll be sure to note that in my log
                   </h6>
                   <p className="text-sm text-gray-900">
                     Lookout flogging bilge rat main sheet bilge water nipper

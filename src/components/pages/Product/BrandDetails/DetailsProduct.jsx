@@ -16,7 +16,7 @@ const DetailsProduct = () => {
 
   const addToCard = (id) => {
     console.log(id);
-    fetch("http://localhost:5000/addCart", {
+    fetch("https://brabd-assignment-10-server.vercel.app/addCart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -44,7 +44,7 @@ const DetailsProduct = () => {
             className="w-full lg:w-1/2"
             // style={`ba; background-position: center center; background-size: cover;`}
           >
-            <img src={image} alt="" />
+            <img className="h-full" src={image} alt="" />
           </div>
           <div className="flex flex-col w-full p-6 lg:w-2/3 md:p-8 lg:p-12">
             <svg

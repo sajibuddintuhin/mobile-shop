@@ -9,7 +9,7 @@ const BrandCrad = ({ brands }) => {
       {" "}
       <div className="card card-compact mx-10 md:mx-0 md:w-96  shadow-xl">
         <figure>
-          <img src={image} alt="Shoes" />
+          <img className="h-[250px]" src={image} alt={name} />
         </figure>
         <div className="card-body">
           <h2 className="text-4xl text-black font-semibold text-center">

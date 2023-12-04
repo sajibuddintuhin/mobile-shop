@@ -5,7 +5,7 @@ const Banner = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/Category")
+    fetch("https://brabd-assignment-10-server.vercel.app/Category")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

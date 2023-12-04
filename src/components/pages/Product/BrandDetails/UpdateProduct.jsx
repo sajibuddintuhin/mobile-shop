@@ -18,13 +18,16 @@ const UpdateProduct = () => {
 
     const product = { image, name, brand, category, price, description };
     console.log(product);
-    fetch(`http://localhost:5000/update/${update?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      `https://brabd-assignment-10-server.vercel.app/update/${update?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
